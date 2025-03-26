@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM Manipulation Example</title>
+  <style>
+    #myDiv {
+      width: 200px;
+      height: 100px;
+      background-color: lightblue;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 20px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div id="myDiv">Original Text</div>
+  <input type="text" id="textInput" placeholder="Enter new text">
+  <input type="color" id="colorInput" value="#add8e6">
+  <button onclick="updateDiv()">Update</button>
+
+  <script>
+    function updateDiv() {
+      const newText = document.getElementById('textInput').value;
+      const newColor = document.getElementById('colorInput').value;
+
+      const div = document.getElementById('myDiv');
+
+      div.textContent = newText || 'Default Text';
+      div.style.backgroundColor = newColor;
+    }
+  </script>
+</body>
+</html>
