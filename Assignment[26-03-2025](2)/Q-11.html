@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DOM Manipulation</title>
+</head>
+<body>
+    <div id="container">
+        <p>This is an existing paragraph.</p>
+    </div>
+    <button id="addParagraph">Add Paragraph</button>
+    <button id="removeParagraph">Remove Last Paragraph</button>
+
+    <script>
+        const container = document.getElementById('container');
+
+        document.getElementById('addParagraph').addEventListener('click', () => {
+            const newParagraph = document.createElement('p');
+            newParagraph.textContent = 'This is a new paragraph.';
+            container.appendChild(newParagraph);
+        });
+
+        document.getElementById('removeParagraph').addEventListener('click', () => {
+            if (container.lastChild) {
+                container.removeChild(container.lastChild);
+            } else {
+                alert('No more paragraphs to remove!');
+            }
+        });
+    </script>
+</body>
+</html>

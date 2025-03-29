@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Propagation Exploration</title>
+    <style>
+        .box {
+            border: 1px solid black;
+            padding: 20px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="outer" class="box">
+        Outer Div
+        <button id="outerBtn">Outer Button</button>
+        <div id="middle" class="box">
+            Middle Div
+            <button id="middleBtn">Middle Button</button>
+            <div id="inner" class="box">
+                Inner Div
+                <button id="innerBtn">Inner Button</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const showAlert = (message) => alert(message);
+
+        const outerDiv = document.getElementById('outer');
+        const middleDiv = document.getElementById('middle');
+        const innerDiv = document.getElementById('inner');
+        const innerButton = document.getElementById('innerBtn');
+
+        outerDiv.addEventListener('click', () => showAlert('Outer Div Clicked'), false); // Bubbling phase
+        outerDiv.addEventListener('click', () => showAlert('Outer Div in Capturing Phase'), true);
+
+        middleDiv.addEventListener('click', () => showAlert('Middle Div Clicked'), false);
+        middleDiv.addEventListener('click', () => showAlert('Middle Div in Capturing Phase'), true);
+
+        innerDiv.addEventListener('click', () => showAlert('Inner Div Clicked'), false);
+        innerDiv.addEventListener('click', () => showAlert('Inner Div in Capturing Phase'), true);
+
+        innerButton.addEventListener('click', (event) => {
+            showAlert('Inner Button Clicked');
+            event.stopPropagation(); 
+        });
+    </script>
+</body>
+</html>
